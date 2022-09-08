@@ -16,7 +16,7 @@ async function main() {
 
     app.get("/",async (req, res) => {
 
-      res.send(await getAllProducts());
+      res.json(await getAllProducts());
     });
 
     await connectDB();
