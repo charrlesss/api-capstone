@@ -1,7 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const connectDB = require("./connect.db.js");
-const getProductModel = require("./model/schema/product.schema.js");
+const getAllProducts = require("./model/methods/get-all-products.js");
 const app = express();
 const PORT = 4000;
 
@@ -14,7 +14,7 @@ async function main() {
 
     app.get("/",async (req, res) => {
 
-      res.send(await getProductModel.find({}));
+      res.send(await getAllProducts());
     });
 
     await connectDB();
