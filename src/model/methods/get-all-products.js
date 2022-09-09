@@ -12,27 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const dotenv_1 = __importDefault(require("dotenv"));
-const connect_db_1 = __importDefault(require("./connect.db"));
-const middleware_1 = __importDefault(require("./config/middleware"));
-const routers_1 = __importDefault(require("./config/routers"));
-dotenv_1.default.config();
-const app = (0, express_1.default)();
-const PORT = 4000;
-function main() {
+const product_schema_1 = __importDefault(require("../schema/product.schema"));
+function getAllProducts() {
     return __awaiter(this, void 0, void 0, function* () {
-        try {
-            app.use(middleware_1.default);
-            app.use(routers_1.default);
-            yield (0, connect_db_1.default)();
-            app.listen(process.env.PORT || PORT, () => {
-                console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
-            });
-        }
-        catch (err) {
-            console.log(err);
-        }
+        return yield product_schema_1.default.find({});
     });
 }
-main();
+exports.default = getAllProducts;
