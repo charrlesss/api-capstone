@@ -1,11 +1,29 @@
-import { Router } from "express";
-import User from "../controller/Administrative/Products";
-
+import { Router, Request, Response, NextFunction } from "express";
+import { googleAuthRouter } from "../third-party/google.auth";
+import { facebookAuthRouter } from "../third-party/facebook.auth";
+import { client } from "../controller/Client";
+import { refreshTokenRoute } from "../third-party/refreshToken";
+import { auth } from "../controller/Authentication";
+import { register } from "../controller/RegisterUser";
+import cors from 'cors'
 const routes = Router();
 
-routes.get("/products", User);
+
+routes.use(cors({ origin: "http://localhost:3000", credentials: true }));
+
+
+routes.use(googleAuthRouter);
+routes.use(facebookAuthRouter);
+routes.use(auth)
+routes.use(register)
+routes.use(client);
+routes.use(refreshTokenRoute)
 
 
 
 
-export default routes
+
+
+export default routes;
+
+

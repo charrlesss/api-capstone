@@ -12,10 +12,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const product_schema_1 = __importDefault(require("../schema/product.schema"));
+const mongoose_1 = __importDefault(require("mongoose"));
 function getAllProducts() {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield product_schema_1.default.find({});
+        let result;
+        const get_package = mongoose_1.default.connection.collection('package');
+        get_package.find().toArray((err, data) => {
+            if (err)
+                return console.error(err);
+            result = data;
+        });
+        return result;
     });
 }
 exports.default = getAllProducts;
