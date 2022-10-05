@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router ,Response ,Request} from "express";
 import passport from "passport";
 
 export const googleAuthRouter = Router();
@@ -21,6 +21,9 @@ googleAuthRouter.get(
   "/google/callback",
   passport.authenticate("google", {
     failureRedirect: "/login",
-    successRedirect: "http://localhost:3000/dashboard",
-  })
+  }),(req:Request,res:Response)=>{
+
+    res.cookie('sidebar' ,'open')
+    res.redirect( "http://localhost:3000/dashboard")
+  }
 );

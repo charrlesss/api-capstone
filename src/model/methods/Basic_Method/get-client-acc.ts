@@ -15,10 +15,10 @@ export async function get_client() {
 
 export const auth_user = async (email: string, params: NewUser) => {
   const user = await clientAccountModel.findOne({ email: email });
-  if (user) return { messages: "this email is already used.", success: false };
+  if (user) return { message: "this email is already used.", success: false };
 
   await (await clientAccountModel.create(params)).save();
-  return { messages: "Successfuly create account.", success: true };
+  return { message: "Successfuly create account.", success: true };
 };
 
 export const store_refreshToken = async (_id: any, token: string) => {

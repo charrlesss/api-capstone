@@ -20,9 +20,9 @@ exports.get_client = get_client;
 const auth_user = (email, params) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield client_acc_schema_1.clientAccountModel.findOne({ email: email });
     if (user)
-        return { messages: "this email is already used.", success: false };
+        return { message: "this email is already used.", success: false };
     yield (yield client_acc_schema_1.clientAccountModel.create(params)).save();
-    return { messages: "Successfuly create account.", success: true };
+    return { message: "Successfuly create account.", success: true };
 });
 exports.auth_user = auth_user;
 const store_refreshToken = (_id, token) => __awaiter(void 0, void 0, void 0, function* () {

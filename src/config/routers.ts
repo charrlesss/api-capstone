@@ -6,6 +6,7 @@ import { refreshTokenRoute } from "../third-party/refreshToken";
 import { auth } from "../controller/Authentication";
 import { register } from "../controller/RegisterUser";
 import cors from 'cors'
+import { facilities } from "../controller/Facilities";
 const routes = Router();
 
 
@@ -18,6 +19,7 @@ routes.use(auth)
 routes.use(register)
 routes.use(client);
 routes.use(refreshTokenRoute)
+routes.use(facilities)
 
 
 

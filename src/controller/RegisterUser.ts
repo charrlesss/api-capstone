@@ -1,6 +1,7 @@
 import { Request, Response, Router } from "express";
 import bcryptjs from "bcryptjs";
-import { auth_user } from "../model/methods/Basic_Method/get-client-acc";
+import { auth_user, get_client_from_email } from "../model/methods/Basic_Method/get-client-acc";
+
 export const register = Router();
 
 const arrayOfRandomProfileIconForUserFeMale: Array<string> = [
@@ -35,3 +36,4 @@ register.post("/register-user", async function (req: Request, res: Response) {
 
   return res.json(user);
 });
+

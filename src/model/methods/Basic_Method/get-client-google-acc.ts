@@ -30,3 +30,9 @@ export const check_refreshToken_google = async (_id: any, token: string) => {
   return await clienGoogletAccountModel.findById(_id).where({refreshToken:token});
 };
 
+export const get_google_client_from_id = async (userId:any) => {
+  return  await clienGoogletAccountModel.findById(userId)
+};
+
+
+

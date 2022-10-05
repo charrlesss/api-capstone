@@ -18,5 +18,7 @@ exports.googleAuthRouter.get("/google", passport_1.default.authenticate("google"
 }));
 exports.googleAuthRouter.get("/google/callback", passport_1.default.authenticate("google", {
     failureRedirect: "/login",
-    successRedirect: "http://localhost:3000/dashboard",
-}));
+}), (req, res) => {
+    res.cookie('sidebar', 'open');
+    res.redirect("http://localhost:3000/dashboard");
+});

@@ -1,4 +1,4 @@
-import { Router} from "express";
+import { Router,Request,Response} from "express";
 import passport from "passport";
 
 export const facebookAuthRouter = Router();
@@ -13,8 +13,11 @@ facebookAuthRouter.get(
   "/facebook/callback",
   passport.authenticate("facebook", {
     failureRedirect: "/login",
-    successRedirect: "http://localhost:3000/dashboard",
-  })
+  }),(req:Request,res:Response)=>{
+
+    res.cookie('sidebar' ,'open')
+    res.redirect( "http://localhost:3000/dashboard")
+  }
 );
 
 

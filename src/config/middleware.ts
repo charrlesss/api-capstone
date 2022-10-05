@@ -18,7 +18,7 @@ const sevenDays = 1000 * 60 * 60 * 24 * 7;
 
 middleware.use(bodyParser.json());
 middleware.use(bodyParser.urlencoded({ extended: true }));
-middleware.use(cors({ origin: "http://localhost:3000", credentials: true }));
+middleware.use(cors({ origin: "http://localhost:3000", credentials: true  }));
 middleware.use(CookieParser());
 middleware.use(
   session({

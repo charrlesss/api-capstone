@@ -30,3 +30,8 @@ interface NewUser {
   };
   
 
+  export const get_facebook_client_from_id = async (userId:any) => {
+    return  await clientFacebookAccountModel.findById(userId)
+  };
+  
+

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.check_refreshToken_facebook = exports.store_refreshToken_facebook = exports.auth_user_with_facebook = exports.get_client_facebook_acc = void 0;
+exports.get_facebook_client_from_id = exports.check_refreshToken_facebook = exports.store_refreshToken_facebook = exports.auth_user_with_facebook = exports.get_client_facebook_acc = void 0;
 const client_facebook_acc_schema_1 = require("../../schema/Basic_Model/client-facebook-acc.schema");
 function get_client_facebook_acc() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -32,3 +32,7 @@ const check_refreshToken_facebook = (_id, token) => __awaiter(void 0, void 0, vo
     return yield client_facebook_acc_schema_1.clientFacebookAccountModel.findById(_id).where({ refreshToken: token });
 });
 exports.check_refreshToken_facebook = check_refreshToken_facebook;
+const get_facebook_client_from_id = (userId) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield client_facebook_acc_schema_1.clientFacebookAccountModel.findById(userId);
+});
+exports.get_facebook_client_from_id = get_facebook_client_from_id;

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.check_refreshToken_google = exports.store_refreshToken_google = exports.auth_user_with_google = exports.get_client_google_acc = void 0;
+exports.get_google_client_from_id = exports.check_refreshToken_google = exports.store_refreshToken_google = exports.auth_user_with_google = exports.get_client_google_acc = void 0;
 const client_google_acc_schema_1 = require("../../schema/Basic_Model/client-google-acc.schema");
 function get_client_google_acc() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -32,3 +32,7 @@ const check_refreshToken_google = (_id, token) => __awaiter(void 0, void 0, void
     return yield client_google_acc_schema_1.clienGoogletAccountModel.findById(_id).where({ refreshToken: token });
 });
 exports.check_refreshToken_google = check_refreshToken_google;
+const get_google_client_from_id = (userId) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield client_google_acc_schema_1.clienGoogletAccountModel.findById(userId);
+});
+exports.get_google_client_from_id = get_google_client_from_id;

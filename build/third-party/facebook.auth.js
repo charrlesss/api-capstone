@@ -10,5 +10,7 @@ exports.facebookAuthRouter = (0, express_1.Router)();
 exports.facebookAuthRouter.get("/facebook", passport_1.default.authenticate("facebook", { scope: "email" }));
 exports.facebookAuthRouter.get("/facebook/callback", passport_1.default.authenticate("facebook", {
     failureRedirect: "/login",
-    successRedirect: "http://localhost:3000/dashboard",
-}));
+}), (req, res) => {
+    res.cookie('sidebar', 'open');
+    res.redirect("http://localhost:3000/dashboard");
+});

@@ -16,6 +16,7 @@ auth.post(
         if(err){
           return next(err);
         }
+        res.cookie('sidebar' ,'open')
         return res.json({message:'successfuly login.' ,success:true})      
       })
 
