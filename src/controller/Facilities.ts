@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 import { verifyToken } from "../third-party/jwt";
-import { get_facilities } from "../model/methods/Basic_Method/get-facilities";
+import { get_facilities } from "../model/methods/facilities";
 export const facilities = Router();
 
 facilities.get("/facilities",verifyToken,async (req: Request, res: Response) => {

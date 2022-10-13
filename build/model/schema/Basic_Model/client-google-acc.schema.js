@@ -15,19 +15,39 @@ const clienGoogletAccountSchema = new mongoose_1.Schema({
         type: String,
         default: "",
     },
-    loginAt: {
-        type: Date,
-        default: Date.now(),
-    },
     refreshToken: {
         type: (Array),
         default: [""],
+    },
+    loginAt: {
+        type: (Array),
+        default: [''],
+    },
+    logoutAt: {
+        type: (Array),
+        default: [''],
+    },
+    createdAt: {
+        type: String,
+        default: new Date().toLocaleString(),
     },
     gender: {
         type: String,
         default: "",
     },
     birthdate: {
+        type: String,
+        default: "",
+    },
+    contact: {
+        type: String,
+        default: "",
+    },
+    address: {
+        type: String,
+        default: "",
+    },
+    password: {
         type: String,
         default: "",
     },

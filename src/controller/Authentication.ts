@@ -11,7 +11,6 @@ auth.post(
       if(!user && info.message){
         return res.json(info)
       }
-
       req.login(user, function(err){
         if(err){
           return next(err);

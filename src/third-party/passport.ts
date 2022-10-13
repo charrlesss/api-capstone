@@ -2,11 +2,11 @@ import { generateRefreshToken, generateAccessToken } from "./jwt";
 import {
   auth_user_with_facebook,
   store_refreshToken_facebook,
-} from "../model/methods/Basic_Method/get-client-facebook-acc";
+} from "../model/methods/client-facebook-acc";
 import {
   auth_user_with_google,
   store_refreshToken_google,
-} from "../model/methods/Basic_Method/get-client-google-acc";
+} from "../model/methods/client-google-acc";
 import GoogleStrategy from "passport-google-oauth20";
 import FacebookAuth from "passport-facebook";
 import passport from "passport";
@@ -28,12 +28,14 @@ passport.use(
         profile: profile.photos[0].value,
         name: profile.displayName,
       };
-      const { _id } = await auth_user_with_google(data.email, data);
-      const ACCESS_TOKEN = generateAccessToken({ id: _id });
-      const REFRESH_TOKEN = generateRefreshToken({ id: _id });
-      await store_refreshToken_google(_id, REFRESH_TOKEN);
+      const userDetails: any = await auth_user_with_google(data.email, data);
+      userDetails.loginAt?.push(`${new Date().toLocaleString()}`);
+      await userDetails.save();
+      const ACCESS_TOKEN = generateAccessToken({ id: userDetails._id });
+      const REFRESH_TOKEN = generateRefreshToken({ id: userDetails._id });
+      await store_refreshToken_google(userDetails._id, REFRESH_TOKEN);
       const user = {
-        _id,
+        _id: userDetails._id,
         ACCESS_TOKEN,
         REFRESH_TOKEN,
       };
@@ -67,13 +69,15 @@ passport.use(
         profile: profile.photos[0].value,
       };
 
-      const { _id } = await auth_user_with_facebook(data.email, data);
-      const ACCESS_TOKEN = generateAccessToken({ id: _id });
-      const REFRESH_TOKEN = generateRefreshToken({ id: _id });
-      await store_refreshToken_facebook(_id, REFRESH_TOKEN);
+      const userDetails: any = await auth_user_with_facebook(data.email, data);
+      userDetails.loginAt?.push(`${new Date().toLocaleString()}`);
+      await userDetails.save();
+      const ACCESS_TOKEN = generateAccessToken({ id: userDetails._id });
+      const REFRESH_TOKEN = generateRefreshToken({ id: userDetails._id });
+      await store_refreshToken_facebook(userDetails._id, REFRESH_TOKEN);
 
       const user = {
-        _id,
+        _id: userDetails._id,
         ACCESS_TOKEN,
         REFRESH_TOKEN,
       };
@@ -89,5 +93,3 @@ passport.serializeUser((user: any, done) => {
 passport.deserializeUser((user: any, done) => {
   return done(null, user);
 });
-
-

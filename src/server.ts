@@ -13,10 +13,6 @@ async function main(): Promise<void> {
     app.use(middleware);
     app.use(appRoutes);
     await connectDb();
- 
-
-  
-
     app.listen(process.env.PORT || PORT, () => {
       console.log(
         `⚡️[server]: Server is running at https://localhost:${PORT}`

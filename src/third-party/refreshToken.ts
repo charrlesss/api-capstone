@@ -1,7 +1,8 @@
 import { Request, Response, Router } from "express";
-import { check_refreshToken } from "../model/methods/Basic_Method/get-client-acc";
-import { check_refreshToken_facebook } from "../model/methods/Basic_Method/get-client-facebook-acc";
-import { check_refreshToken_google } from "../model/methods/Basic_Method/get-client-google-acc";
+import { check_refreshToken } from "../model/methods/client";
+import { check_refreshToken_facebook } from "../model/methods/client-facebook-acc";
+import { check_refreshToken_google } from "../model/methods/client-google-acc";
+import { check_refreshToken_admin } from "../model/methods/admin";
 import { generateAccessToken } from "./jwt";
 import jwt from "jsonwebtoken";
 export const refreshTokenRoute = Router();
@@ -14,7 +15,8 @@ refreshTokenRoute.post(
     const isHaveRefreshToken =
       (await check_refreshToken(id, refreshToken)) ||
       (await check_refreshToken_facebook(id, refreshToken)) ||
-      (await check_refreshToken_google(id, refreshToken));
+      (await check_refreshToken_google(id, refreshToken)) ||
+      (await check_refreshToken_admin(id, refreshToken))
     if (!refreshToken) return res.sendStatus(401);
     if (!isHaveRefreshToken) return res.sendStatus(403);
 

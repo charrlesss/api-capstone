@@ -7,7 +7,7 @@ const sevenDays = 1000 * 60 * 60 * 24 * 7;
 
 export const generateAccessToken = (user: { id: any }): string => {
   return jwt.sign(user, process.env.ACCESS_TOKEN as string, {
-    expiresIn: "20  s",
+    expiresIn: "30m",
   });
 };
 

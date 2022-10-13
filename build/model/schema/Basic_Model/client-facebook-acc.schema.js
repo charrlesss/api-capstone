@@ -15,13 +15,21 @@ const clientFacebookAccountSchema = new mongoose_1.Schema({
         type: String,
         default: "",
     },
-    loginAt: {
-        type: Date,
-        default: Date.now(),
-    },
     refreshToken: {
         type: (Array),
         default: [""],
+    },
+    loginAt: {
+        type: (Array),
+        default: [''],
+    },
+    logoutAt: {
+        type: (Array),
+        default: [''],
+    },
+    createdAt: {
+        type: String,
+        default: new Date().toLocaleString(),
     },
     gender: {
         type: String,
@@ -31,5 +39,17 @@ const clientFacebookAccountSchema = new mongoose_1.Schema({
         type: String,
         default: "",
     },
+    contact: {
+        type: String,
+        default: "",
+    },
+    address: {
+        type: String,
+        default: "",
+    },
+    password: {
+        type: String,
+        default: "",
+    }
 }, { versionKey: false });
 exports.clientFacebookAccountModel = (0, mongoose_1.model)("clients-facebook-account", clientFacebookAccountSchema);

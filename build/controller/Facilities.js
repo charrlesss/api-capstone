@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.facilities = void 0;
 const express_1 = require("express");
 const jwt_1 = require("../third-party/jwt");
-const get_facilities_1 = require("../model/methods/Basic_Method/get-facilities");
+const facilities_1 = require("../model/methods/facilities");
 exports.facilities = (0, express_1.Router)();
 exports.facilities.get("/facilities", jwt_1.verifyToken, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    return res.json(yield (0, get_facilities_1.get_facilities)());
+    return res.json(yield (0, facilities_1.get_facilities)());
 }));

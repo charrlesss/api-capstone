@@ -10,7 +10,7 @@ const dotenv_1 = require("dotenv");
 const sevenDays = 1000 * 60 * 60 * 24 * 7;
 const generateAccessToken = (user) => {
     return jsonwebtoken_1.default.sign(user, process.env.ACCESS_TOKEN, {
-        expiresIn: "20  s",
+        expiresIn: "30m",
     });
 };
 exports.generateAccessToken = generateAccessToken;

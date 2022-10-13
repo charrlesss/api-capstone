@@ -13,8 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jwt_1 = require("./jwt");
-const get_client_facebook_acc_1 = require("../model/methods/Basic_Method/get-client-facebook-acc");
-const get_client_google_acc_1 = require("../model/methods/Basic_Method/get-client-google-acc");
+const client_facebook_acc_1 = require("../model/methods/client-facebook-acc");
+const client_google_acc_1 = require("../model/methods/client-google-acc");
 const passport_google_oauth20_1 = __importDefault(require("passport-google-oauth20"));
 const passport_facebook_1 = __importDefault(require("passport-facebook"));
 const passport_1 = __importDefault(require("passport"));
@@ -25,6 +25,7 @@ passport_1.default.use(new passport_google_oauth20_1.default.Strategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "/google/callback",
 }, function (accessToken, refreshToken, profile, done) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         const data = {
             auth_type: "google",
@@ -32,12 +33,14 @@ passport_1.default.use(new passport_google_oauth20_1.default.Strategy({
             profile: profile.photos[0].value,
             name: profile.displayName,
         };
-        const { _id } = yield (0, get_client_google_acc_1.auth_user_with_google)(data.email, data);
-        const ACCESS_TOKEN = (0, jwt_1.generateAccessToken)({ id: _id });
-        const REFRESH_TOKEN = (0, jwt_1.generateRefreshToken)({ id: _id });
-        yield (0, get_client_google_acc_1.store_refreshToken_google)(_id, REFRESH_TOKEN);
+        const userDetails = yield (0, client_google_acc_1.auth_user_with_google)(data.email, data);
+        (_a = userDetails.loginAt) === null || _a === void 0 ? void 0 : _a.push(`${new Date().toLocaleString()}`);
+        yield userDetails.save();
+        const ACCESS_TOKEN = (0, jwt_1.generateAccessToken)({ id: userDetails._id });
+        const REFRESH_TOKEN = (0, jwt_1.generateRefreshToken)({ id: userDetails._id });
+        yield (0, client_google_acc_1.store_refreshToken_google)(userDetails._id, REFRESH_TOKEN);
         const user = {
-            _id,
+            _id: userDetails._id,
             ACCESS_TOKEN,
             REFRESH_TOKEN,
         };
@@ -58,6 +61,7 @@ passport_1.default.use(new passport_facebook_1.default.Strategy({
         "link",
     ],
 }, function (accessToken, refreshToken, profile, done) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         const data = {
             name: profile.displayName,
@@ -65,12 +69,14 @@ passport_1.default.use(new passport_facebook_1.default.Strategy({
             email: profile.emails[0].value,
             profile: profile.photos[0].value,
         };
-        const { _id } = yield (0, get_client_facebook_acc_1.auth_user_with_facebook)(data.email, data);
-        const ACCESS_TOKEN = (0, jwt_1.generateAccessToken)({ id: _id });
-        const REFRESH_TOKEN = (0, jwt_1.generateRefreshToken)({ id: _id });
-        yield (0, get_client_facebook_acc_1.store_refreshToken_facebook)(_id, REFRESH_TOKEN);
+        const userDetails = yield (0, client_facebook_acc_1.auth_user_with_facebook)(data.email, data);
+        (_a = userDetails.loginAt) === null || _a === void 0 ? void 0 : _a.push(`${new Date().toLocaleString()}`);
+        yield userDetails.save();
+        const ACCESS_TOKEN = (0, jwt_1.generateAccessToken)({ id: userDetails._id });
+        const REFRESH_TOKEN = (0, jwt_1.generateRefreshToken)({ id: userDetails._id });
+        yield (0, client_facebook_acc_1.store_refreshToken_facebook)(userDetails._id, REFRESH_TOKEN);
         const user = {
-            _id,
+            _id: userDetails._id,
             ACCESS_TOKEN,
             REFRESH_TOKEN,
         };

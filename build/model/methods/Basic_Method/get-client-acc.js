@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.get_client_from_id = exports.update_refreshToken = exports.get_client_from_email = exports.check_refreshToken = exports.store_refreshToken = exports.auth_user = exports.get_client = void 0;
+exports.remove_acc_by_email = exports.verify_code_send = exports.store_new_user = exports.get_client_from_id = exports.update_refreshToken = exports.get_client_from_email = exports.check_refreshToken = exports.store_refreshToken = exports.auth_user = exports.get_client = void 0;
 const client_acc_schema_1 = require("../../schema/Basic_Model/client-acc.schema");
 function get_client() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -47,3 +47,15 @@ const get_client_from_id = (userId) => __awaiter(void 0, void 0, void 0, functio
     return yield client_acc_schema_1.clientAccountModel.findById(userId);
 });
 exports.get_client_from_id = get_client_from_id;
+const store_new_user = (params) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield (yield client_acc_schema_1.clientAccountModel.create(params)).save();
+});
+exports.store_new_user = store_new_user;
+const verify_code_send = (email, code) => __awaiter(void 0, void 0, void 0, function* () {
+    return (yield client_acc_schema_1.clientAccountModel.findOne({ email: email }).where({ "verifyCode": code }));
+});
+exports.verify_code_send = verify_code_send;
+const remove_acc_by_email = (email) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield client_acc_schema_1.clientAccountModel.findOneAndRemove({ email: email });
+});
+exports.remove_acc_by_email = remove_acc_by_email;
