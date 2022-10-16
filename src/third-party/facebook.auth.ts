@@ -23,7 +23,7 @@ facebookAuthRouter.get(
 
     // return res.redirect("http://localhost:3000/production")
 
-    return res.redirect("http://localhost:3000/dashboard");
+    return res.redirect("https://localhost:3000/dashboard");
   }
 );
 

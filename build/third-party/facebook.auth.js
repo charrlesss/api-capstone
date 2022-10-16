@@ -15,5 +15,5 @@ exports.facebookAuthRouter.get("/facebook/callback", passport_1.default.authenti
     // if(process.env.NODE_ENV === 'dev'){
     // }
     // return res.redirect("http://localhost:3000/production")
-    return res.redirect("http://localhost:3000/dashboard");
+    return res.redirect("https://localhost:3000/dashboard");
 });
