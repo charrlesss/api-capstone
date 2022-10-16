@@ -10,7 +10,7 @@ facebookAuthRouter.get(
 );
 
 facebookAuthRouter.get(
-  "/facebook/callback",
+  "https://api-admin-capstone.herokuapp.com/facebook/callback",
   passport.authenticate("facebook", {
     failureRedirect: "/login",
   }),(req:Request,res:Response)=>{

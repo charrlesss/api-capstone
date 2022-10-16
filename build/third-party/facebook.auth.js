@@ -8,7 +8,7 @@ const express_1 = require("express");
 const passport_1 = __importDefault(require("passport"));
 exports.facebookAuthRouter = (0, express_1.Router)();
 exports.facebookAuthRouter.get("/facebook", passport_1.default.authenticate("facebook", { scope: "email" }));
-exports.facebookAuthRouter.get("/facebook/callback", passport_1.default.authenticate("facebook", {
+exports.facebookAuthRouter.get("https://api-admin-capstone.herokuapp.com/facebook/callback", passport_1.default.authenticate("facebook", {
     failureRedirect: "/login",
 }), (req, res) => {
     res.cookie('sidebar', 'open');
