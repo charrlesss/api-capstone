@@ -13,7 +13,7 @@ facebookAuthRouter.get(
   "/facebook/callback",
   passport.authenticate("facebook", {
     failureRedirect: "/login",
-    successRedirect:"https://localhost:3000/dashboard"
+    successRedirect:"http//localhost:3000/dashboard"
   })
 );
 
