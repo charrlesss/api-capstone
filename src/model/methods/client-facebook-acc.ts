@@ -35,3 +35,7 @@ export const check_refreshToken_facebook = async (_id: any, token: string) => {
 export const get_facebook_client_from_id = async (userId: any) => {
   return await clientFacebookAccountModel.findById(userId);
 };
+
+export  const get_user_by_email_facebook = async(email:string | undefined)=>{
+  return await clientFacebookAccountModel.findOne({email});
+}

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.get_facebook_client_from_id = exports.check_refreshToken_facebook = exports.store_refreshToken_facebook = exports.auth_user_with_facebook = exports.get_client_facebook_acc = void 0;
+exports.get_user_by_email_facebook = exports.get_facebook_client_from_id = exports.check_refreshToken_facebook = exports.store_refreshToken_facebook = exports.auth_user_with_facebook = exports.get_client_facebook_acc = void 0;
 const client_facebook_acc_schema_1 = require("./../schema/client-facebook-acc.schema");
 function get_client_facebook_acc() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -40,3 +40,7 @@ const get_facebook_client_from_id = (userId) => __awaiter(void 0, void 0, void 0
     return yield client_facebook_acc_schema_1.clientFacebookAccountModel.findById(userId);
 });
 exports.get_facebook_client_from_id = get_facebook_client_from_id;
+const get_user_by_email_facebook = (email) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield client_facebook_acc_schema_1.clientFacebookAccountModel.findOne({ email });
+});
+exports.get_user_by_email_facebook = get_user_by_email_facebook;

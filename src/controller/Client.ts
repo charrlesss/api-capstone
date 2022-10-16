@@ -81,11 +81,26 @@ client.post(
   "/update-profile",
   verifyToken,
   async (req: Request, res: Response) => {
+    const profile = req.files?.profile as UploadedFile;
     const user: any = req.user;
     const getUserDetails: any =
       (await get_facebook_client_from_id(user._id)) ||
       (await get_google_client_from_id(user._id)) ||
       (await get_client_from_id(user._id));
+
+    if (profile) {
+      const filename = uuidv4();
+      const mimetype = profile?.mimetype.split("/")[1];
+      const file = `${filename}.${mimetype}`;
+      getUserDetails.profile = file;
+      profile?.mv(`./assets/${file}`, function (err) {
+        if (err) {
+          res.json({
+            data: { message: err, success: true },
+          });
+        }
+      });
+    }
 
     getUserDetails.gender = req.body.gender;
     getUserDetails.birthdate = req.body.birthdate;
@@ -93,19 +108,18 @@ client.post(
     getUserDetails.address = req.body.address;
     getUserDetails.name = req.body.name;
     getUserDetails.email = req.body.email;
-    getUserDetails.profile = req.body.profile;
 
-    const files = fs.readdirSync("./assets/upload-photo");
-    const file = files.filter((data) => {
-      return data === req.body.profile;
-    });
-    if (file.length !== 0) {
-      const sourceFile = `./assets/upload-photo/${file[0]}`;
-      const moveFile = "./assets/";
+    // const files = fs.readdirSync("./assets/upload-photo");
+    // const file = files.filter((data) => {
+    //   return data === req.body.profile;
+    // });
+    // if (file.length !== 0) {
+    //   const sourceFile = `./assets/upload-photo/${file[0]}`;
+    //   const moveFile = "./assets/";
 
-      var source = fs.readFileSync(sourceFile);
-      fs.writeFileSync(`${moveFile}${file[0]}`, source);
-    }
+    //   var source = fs.readFileSync(sourceFile);
+    //   fs.writeFileSync(`${moveFile}${file[0]}`, source);
+    // }
 
     await getUserDetails.save();
 

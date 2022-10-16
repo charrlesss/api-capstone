@@ -19,7 +19,6 @@ const client_1 = require("../model/methods/client");
 const client_facebook_acc_1 = require("../model/methods/client-facebook-acc");
 const client_google_acc_1 = require("../model/methods/client-google-acc");
 const uuid_1 = require("uuid");
-const fs_1 = __importDefault(require("fs"));
 const sendEmail_1 = require("../lib/sendEmail");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -76,27 +75,41 @@ exports.client.post("/complete-details", jwt_1.verifyToken, (req, res) => __awai
     res.json({ success: true, message: "Successfully set gender and birhtdate" });
 }));
 exports.client.post("/update-profile", jwt_1.verifyToken, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _b;
+    const profile = (_b = req.files) === null || _b === void 0 ? void 0 : _b.profile;
     const user = req.user;
     const getUserDetails = (yield (0, client_facebook_acc_1.get_facebook_client_from_id)(user._id)) ||
         (yield (0, client_google_acc_1.get_google_client_from_id)(user._id)) ||
         (yield (0, client_1.get_client_from_id)(user._id));
+    if (profile) {
+        const filename = (0, uuid_1.v4)();
+        const mimetype = profile === null || profile === void 0 ? void 0 : profile.mimetype.split("/")[1];
+        const file = `${filename}.${mimetype}`;
+        getUserDetails.profile = file;
+        profile === null || profile === void 0 ? void 0 : profile.mv(`./assets/${file}`, function (err) {
+            if (err) {
+                res.json({
+                    data: { message: err, success: true },
+                });
+            }
+        });
+    }
     getUserDetails.gender = req.body.gender;
     getUserDetails.birthdate = req.body.birthdate;
     getUserDetails.contact = req.body.contact;
     getUserDetails.address = req.body.address;
     getUserDetails.name = req.body.name;
     getUserDetails.email = req.body.email;
-    getUserDetails.profile = req.body.profile;
-    const files = fs_1.default.readdirSync("./assets/upload-photo");
-    const file = files.filter((data) => {
-        return data === req.body.profile;
-    });
-    if (file.length !== 0) {
-        const sourceFile = `./assets/upload-photo/${file[0]}`;
-        const moveFile = "./assets/";
-        var source = fs_1.default.readFileSync(sourceFile);
-        fs_1.default.writeFileSync(`${moveFile}${file[0]}`, source);
-    }
+    // const files = fs.readdirSync("./assets/upload-photo");
+    // const file = files.filter((data) => {
+    //   return data === req.body.profile;
+    // });
+    // if (file.length !== 0) {
+    //   const sourceFile = `./assets/upload-photo/${file[0]}`;
+    //   const moveFile = "./assets/";
+    //   var source = fs.readFileSync(sourceFile);
+    //   fs.writeFileSync(`${moveFile}${file[0]}`, source);
+    // }
     yield getUserDetails.save();
     res.json({
         data: { message: "successfully update profile.", success: true },

@@ -14,6 +14,8 @@ declare module 'express-session' {
       REFRESH_TOKEN:string,
       _id:any
     }
+    forgotpaswordEmail:string,
+    forgotpaswordVerify:boolean
 }
 }
 

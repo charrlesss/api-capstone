@@ -14,6 +14,14 @@ const facilitiesreservationSchema = new mongoose_1.Schema({
     facilitydescription: {
         type: String,
         default: ''
+    },
+    amenities: {
+        type: (Array),
+        default: ['']
+    },
+    services: {
+        type: (Array),
+        default: ['']
     }
 }, { versionKey: false });
 exports.facilitiesreservationModel = (0, mongoose_1.model)("facilities", facilitiesreservationSchema);

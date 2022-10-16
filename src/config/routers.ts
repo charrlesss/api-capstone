@@ -1,3 +1,4 @@
+import { Forgotpasword } from "../controller/Forgotpasword";
 import { Router } from "express";
 import { googleAuthRouter } from "../third-party/google.auth";
 import { facebookAuthRouter } from "../third-party/facebook.auth";
@@ -14,15 +15,16 @@ const routes = Router();
 
 routes.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
-routes.use(admin)
+routes.use(admin);
 routes.use(googleAuthRouter);
 routes.use(facebookAuthRouter);
 routes.use(auth);
 routes.use(register);
+routes.use(Forgotpasword);
 routes.use(client);
 routes.use(refreshTokenRoute);
 routes.use(facilities);
 routes.use(uploadfile);
-routes.use(makeAppointmentRequest)
+routes.use(makeAppointmentRequest);
 
 export default routes;

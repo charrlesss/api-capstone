@@ -13,6 +13,14 @@ const facilitiesreservationSchema = new Schema(
     facilitydescription:{
       type:String,
       default:''
+    },
+    amenities:{
+      type:Array<string>,
+      default:['']
+    },
+    services:{
+      type:Array<string>,
+      default:['']
     }
   },
   { versionKey: false }

@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const Forgotpasword_1 = require("../controller/Forgotpasword");
 const express_1 = require("express");
 const google_auth_1 = require("../third-party/google.auth");
 const facebook_auth_1 = require("../third-party/facebook.auth");
@@ -22,6 +23,7 @@ routes.use(google_auth_1.googleAuthRouter);
 routes.use(facebook_auth_1.facebookAuthRouter);
 routes.use(Authentication_1.auth);
 routes.use(RegisterUser_1.register);
+routes.use(Forgotpasword_1.Forgotpasword);
 routes.use(Client_1.client);
 routes.use(refreshToken_1.refreshTokenRoute);
 routes.use(Facilities_1.facilities);

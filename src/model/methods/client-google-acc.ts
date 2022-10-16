@@ -34,5 +34,8 @@ export const get_google_client_from_id = async (userId:any) => {
   return  await clienGoogletAccountModel.findById(userId)
 };
 
+export  const get_user_by_email_goggle = async(email:string | undefined)=>{
+  return await clienGoogletAccountModel.findOne({email});
+}
 
 

@@ -32,7 +32,7 @@ export const check_refreshToken = async (_id: any, token: string) => {
 };
 
 export const get_client_from_email = async (
-  email: string
+  email:string | undefined
 ): Promise<User | null> => {
   return await clientAccountModel.findOne({ email: email });
 };
