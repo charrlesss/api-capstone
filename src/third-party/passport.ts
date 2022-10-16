@@ -52,7 +52,7 @@ passport.use(
     {
       clientID: process.env.FACEBOOK_APP_ID as string,
       clientSecret: process.env.FACEBOOK_APP_SECRET as string,
-      callbackURL: process.env.NODE_ENV === 'dev' ?"/facebook/callback" : "https://api-admin-capstone.herokuapp.com/facebook/callback",
+      callbackURL: "/facebook/callback",
       profileFields: [
         "id",
         "displayName",
