@@ -51,7 +51,13 @@ const sevenDays = 1000 * 60 * 60 * 24 * 7;
 middleware.use("/uploads", express_1.default.static("./assets"));
 middleware.use(body_parser_1.default.json());
 middleware.use(body_parser_1.default.urlencoded({ extended: true }));
-middleware.use((0, cors_1.default)({ origin: "http://localhost:3000", credentials: true }));
+middleware.use((0, cors_1.default)({
+    origin: [
+        "http://localhost:3000",
+        "https://facilities-reservation.herokuapp.com",
+    ],
+    credentials: true,
+}));
 middleware.use((0, cookie_parser_1.default)());
 middleware.use((0, express_fileupload_1.default)({ createParentPath: true }));
 middleware.use((0, express_session_1.default)({
