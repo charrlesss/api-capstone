@@ -17,7 +17,7 @@ const UploadFile_1 = require("../controller/UploadFile");
 const MakeAppointmentRequest_1 = require("../controller/MakeAppointmentRequest");
 const Admin_1 = require("../controller/Admin");
 const routes = (0, express_1.Router)();
-routes.use((0, cors_1.default)({ origin: "http://localhost:3000", credentials: true }));
+routes.use((0, cors_1.default)({ origin: "*", credentials: true }));
 routes.use(Admin_1.admin);
 routes.use(google_auth_1.googleAuthRouter);
 routes.use(facebook_auth_1.facebookAuthRouter);
