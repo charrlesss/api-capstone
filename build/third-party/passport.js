@@ -25,6 +25,7 @@ passport_1.default.use(new passport_google_oauth20_1.default.Strategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "/google/callback",
+    proxy: true
 }, function (accessToken, refreshToken, profile, done) {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {

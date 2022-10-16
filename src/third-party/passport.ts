@@ -21,6 +21,7 @@ passport.use(
       clientID: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       callbackURL: "/google/callback",
+      proxy:true
     },
     async function (accessToken, refreshToken, profile: any, done) {
       const data = {
