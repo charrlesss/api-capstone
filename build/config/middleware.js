@@ -52,7 +52,11 @@ middleware.use("/uploads", express_1.default.static("./assets"));
 middleware.use(body_parser_1.default.json());
 middleware.use(body_parser_1.default.urlencoded({ extended: true }));
 middleware.use((0, cors_1.default)({
-    origin: ['http://localhost:3000', 'https://facilities-reservation.herokuapp.com'],
+    origin: [
+        "http://localhost:3000",
+        "https://facilities-reservation.herokuapp.com",
+        "http://localhost:5500",
+    ],
     credentials: true,
 }));
 middleware.use((0, cookie_parser_1.default)());

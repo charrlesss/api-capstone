@@ -18,6 +18,7 @@ routes.use(
     origin: [
       "http://localhost:3000",
       "https://facilities-reservation.herokuapp.com",
+      "http://localhost:5500",
     ],
     credentials: true,
   })
