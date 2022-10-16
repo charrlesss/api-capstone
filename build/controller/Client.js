@@ -33,6 +33,7 @@ exports.client.get("/authenticated-user", function (req, res) {
                 success: true,
             });
         }
+        console.log(process.env.NODE_ENV);
         return res.json({
             message: "Not Authorize User",
             data: [],
@@ -40,6 +41,7 @@ exports.client.get("/authenticated-user", function (req, res) {
             verify: false,
             GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || "not detect",
             GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || "not detect",
+            NODE_ENV: process.env.NODE_ENV
         });
     });
 });

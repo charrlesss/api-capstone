@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "watch": "tsc --watch",
-    "devStart": "nodemon ./build/server.js",
-    "start": "node ./build/server.js"
+    "devStart": "set NODE_ENV=dev && nodemon ./build/server.js",
+    "start": "set NODE_ENV=prod && node ./build/server.js"
   },
   "keywords": [],
   "author": "",

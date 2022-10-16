@@ -20,5 +20,8 @@ exports.googleAuthRouter.get("/google/callback", passport_1.default.authenticate
     failureRedirect: "/login",
 }), (req, res) => {
     res.cookie("sidebar", "open");
-    res.redirect("http://localhost:3000/dashboard");
+    if (process.env.NODE_ENV === 'dev') {
+        return res.redirect("http://localhost:3000/dashboard");
+    }
+    return res.redirect("http://localhost:3000/production");
 });
