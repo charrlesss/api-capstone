@@ -22,6 +22,7 @@ middleware.use(bodyParser.json());
 middleware.use(bodyParser.urlencoded({ extended: true }));
 middleware.use(
   cors({
+    origin:'*',
     credentials: true,
   })
 );
