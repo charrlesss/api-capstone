@@ -57,11 +57,9 @@ middleware.use((0, express_fileupload_1.default)({ createParentPath: true }));
 middleware.use((0, express_session_1.default)({
     secret: "keyboard cat",
     resave: false,
-    proxy: true,
     saveUninitialized: true,
     cookie: {
-        sameSite: "none",
-        httpOnly: false,
+        httpOnly: true,
         maxAge: sevenDays,
     },
 }));

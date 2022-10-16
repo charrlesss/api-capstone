@@ -1,8 +1,7 @@
-import { Router} from "express";
+import { Router, Request, Response } from "express";
 import passport from "passport";
 
 export const facebookAuthRouter = Router();
-
 
 facebookAuthRouter.get(
   "/facebook",
@@ -13,11 +12,14 @@ facebookAuthRouter.get(
   "/facebook/callback",
   passport.authenticate("facebook", {
     failureRedirect: "/login",
-    successRedirect:"http//localhost:3000/dashboard"
-  })
+  }),
+  (req: Request, res: Response) => {
+    res.cookie("sidebar", "open");
+    if (process.env.NODE_ENV === "dev") {
+      return res.redirect("http://localhost:3000/dashboard");
+    }
+    return res.redirect(
+      "https://facilities-reservation.herokuapp.com/dashboard"
+    );
+  }
 );
-
-
-
-
-

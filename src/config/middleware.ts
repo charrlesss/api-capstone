@@ -27,11 +27,9 @@ middleware.use(
   session({
     secret: "keyboard cat",
     resave: false,
-    proxy: true,
     saveUninitialized: true,
     cookie: {
-      sameSite: "none",
-      httpOnly: false,
+      httpOnly: true,
       maxAge: sevenDays,
     },
   })

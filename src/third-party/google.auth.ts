@@ -24,7 +24,10 @@ googleAuthRouter.get(
   }),
   (req: Request, res: Response) => {
     res.cookie("sidebar", "open");
+    if(process.env.NODE_ENV === 'dev'){
 
-    return res.redirect("http://localhost:3000/dashboard");
+      return res.redirect("http://localhost:3000/dashboard");
+    }
+    return res.redirect('https://facilities-reservation.herokuapp.com/dashboard')
   }
 );
