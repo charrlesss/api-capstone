@@ -25,6 +25,7 @@ function main() {
         try {
             app.use(middleware_1.default);
             app.use(routers_1.default);
+            app.enable('trust proxy');
             yield (0, connect_db_1.default)();
             app.listen(process.env.PORT || PORT, () => {
                 console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);

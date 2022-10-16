@@ -12,6 +12,7 @@ async function main(): Promise<void> {
   try {
     app.use(middleware);
     app.use(appRoutes);
+    app.enable('trust proxy')
     await connectDb();
     app.listen(process.env.PORT || PORT, () => {
       console.log(
