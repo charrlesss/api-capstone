@@ -13,7 +13,15 @@ import { makeAppointmentRequest } from "../controller/MakeAppointmentRequest";
 import { admin } from "../controller/Admin";
 const routes = Router();
 
-routes.use(cors({ origin: "*", credentials: true }));
+routes.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://facilities-reservation.herokuapp.com",
+    ],
+    credentials: true,
+  })
+);
 
 routes.use(admin);
 routes.use(googleAuthRouter);
