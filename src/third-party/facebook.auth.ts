@@ -10,21 +10,11 @@ facebookAuthRouter.get(
 );
 
 facebookAuthRouter.get(
-  "https://api-admin-capstone.herokuapp.com/facebook/callback",
+  "/facebook/callback",
   passport.authenticate("facebook", {
     failureRedirect: "/login",
-  }),(req:Request,res:Response)=>{
-
-    res.cookie('sidebar' ,'open')
-    // if(process.env.NODE_ENV === 'dev'){
-
-    
-    // }
-
-    // return res.redirect("http://localhost:3000/production")
-
-    return res.redirect("https://localhost:3000/dashboard");
-  }
+    successRedirect:"/http://localhost:3000/dashboard"
+  })
 );
 
 

@@ -52,7 +52,7 @@ passport.use(
     {
       clientID: process.env.FACEBOOK_APP_ID as string,
       clientSecret: process.env.FACEBOOK_APP_SECRET as string,
-      callbackURL: "https://api-admin-capstone.herokuapp.com/facebook/callback",
+      callbackURL: "/facebook/callback",
       profileFields: [
         "id",
         "displayName",
@@ -62,6 +62,7 @@ passport.use(
         "email",
         "link",
       ],
+      
     },
     async function (accessToken, refreshToken, profile: any, done) {
       const data = {
