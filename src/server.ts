@@ -11,7 +11,6 @@ const PORT: number = 4000;
 async function main(): Promise<void> {
   try {
     app.enable('trust proxy')
-    app.set("trust proxy", 1);
     app.use(middleware);
     app.use(appRoutes);
 

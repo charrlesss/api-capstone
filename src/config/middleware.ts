@@ -32,6 +32,7 @@ middleware.use(
       sameSite: "none",
       httpOnly: true,
       maxAge: sevenDays,
+      secure:true
     },
   })
 );
