@@ -32,7 +32,8 @@ middleware.use(
       sameSite: "none",
       httpOnly: true,
       maxAge: sevenDays,
-      secure:true
+      secure:true,
+      domain:'api-admin-capstone.herokuapp.com'
     },
   })
 );
