@@ -22,10 +22,6 @@ middleware.use(bodyParser.json());
 middleware.use(bodyParser.urlencoded({ extended: true }));
 middleware.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://facilities-reservation.herokuapp.com",
-    ],
     credentials: true,
   })
 );
