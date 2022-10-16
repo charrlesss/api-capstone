@@ -17,13 +17,17 @@ client.get("/authenticated-user", async function (req: Request, res: Response) {
       message: "Authorise User",
       user: req.session.user,
       success: true,
-      verify:false,
-      GOOGLE_CLIENT_ID:process.env.GOOGLE_CLIENT_ID || 'not detect',
-      GOOGLE_CLIENT_SECRET:process.env.GOOGLE_CLIENT_SECRET || 'not detect'
     });
   }
 
-  return res.json({ message: "Not Authorize User", data: [], success: false });
+  return res.json({
+    message: "Not Authorize User",
+    data: [],
+    success: false,
+    verify: false,
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || "not detect",
+    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || "not detect",
+  });
 });
 
 client.get(
