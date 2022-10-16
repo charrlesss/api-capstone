@@ -5,7 +5,6 @@ import { get_facebook_client_from_id } from "../model/methods/client-facebook-ac
 import { get_google_client_from_id } from "../model/methods/client-google-acc";
 import { UploadedFile } from "express-fileupload";
 import { v4 as uuidv4 } from "uuid";
-import fs from "fs";
 import { sendEmailToChangePassword } from "../lib/sendEmail";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -18,6 +17,8 @@ client.get("/authenticated-user", async function (req: Request, res: Response) {
       message: "Authorise User",
       user: req.session.user,
       success: true,
+      GOOGLE_CLIENT_ID:process.env.GOOGLE_CLIENT_ID,
+      GOOGLE_CLIENT_SECRET:process.env.GOOGLE_CLIENT_SECRET
     });
   }
 
