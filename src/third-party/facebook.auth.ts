@@ -13,7 +13,7 @@ facebookAuthRouter.get(
   "/facebook/callback",
   passport.authenticate("facebook", {
     failureRedirect: "/login",
-    successRedirect:"/http://localhost:3000/dashboard"
+    successRedirect:"https://facilities-reservation.herokuapp.com"
   })
 );
 
