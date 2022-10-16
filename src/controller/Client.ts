@@ -17,8 +17,8 @@ client.get("/authenticated-user", async function (req: Request, res: Response) {
       message: "Authorise User",
       user: req.session.user,
       success: true,
-      GOOGLE_CLIENT_ID:process.env.GOOGLE_CLIENT_ID,
-      GOOGLE_CLIENT_SECRET:process.env.GOOGLE_CLIENT_SECRET
+      GOOGLE_CLIENT_ID:process.env.GOOGLE_CLIENT_ID || 'not detect',
+      GOOGLE_CLIENT_SECRET:process.env.GOOGLE_CLIENT_SECRET || 'not detect'
     });
   }
 
