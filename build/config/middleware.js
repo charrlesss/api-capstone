@@ -59,11 +59,9 @@ middleware.use((0, express_session_1.default)({
     resave: false,
     saveUninitialized: true,
     cookie: {
-        sameSite: "lax",
-        httpOnly: true,
+        sameSite: "none",
+        httpOnly: false,
         maxAge: sevenDays,
-        secure: true,
-        domain: 'api-admin-capstone.herokuapp.com'
     },
 }));
 middleware.use((0, connect_flash_1.default)());

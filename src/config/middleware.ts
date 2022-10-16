@@ -29,11 +29,9 @@ middleware.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      sameSite: "lax",
-      httpOnly: true,
+      sameSite: "none",
+      httpOnly: false,
       maxAge: sevenDays,
-      secure:true,
-      domain:'api-admin-capstone.herokuapp.com'
     },
   })
 );
