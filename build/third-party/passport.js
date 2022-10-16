@@ -21,6 +21,7 @@ const passport_1 = __importDefault(require("passport"));
 const dotenv_1 = require("dotenv");
 (0, dotenv_1.config)();
 passport_1.default.use(new passport_google_oauth20_1.default.Strategy({
+    scope: ['profile', 'email'],
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "/google/callback",

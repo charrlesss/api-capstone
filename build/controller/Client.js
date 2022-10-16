@@ -33,7 +33,14 @@ exports.client.get("/authenticated-user", function (req, res) {
                 success: true,
             });
         }
-        return res.json({ message: "Not Authorize User", data: [], success: false });
+        return res.json({
+            message: "Not Authorize User",
+            data: [],
+            success: false,
+            verify: false,
+            GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || "not detect",
+            GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || "not detect",
+        });
     });
 });
 exports.client.get("/get-client-details", jwt_1.verifyToken, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
