@@ -52,7 +52,7 @@ passport_1.default.use(new passport_google_oauth20_1.default.Strategy({
 passport_1.default.use(new passport_facebook_1.default.Strategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: process.env.NODE_ENV === 'dev' ? "/facebook/callback" : "https://api-admin-capstone.herokuapp.com/facebook",
+    callbackURL: "https://api-admin-capstone.herokuapp.com/facebook",
     profileFields: [
         "id",
         "displayName",
