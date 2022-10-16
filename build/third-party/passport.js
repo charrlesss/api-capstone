@@ -21,11 +21,11 @@ const passport_1 = __importDefault(require("passport"));
 const dotenv_1 = require("dotenv");
 (0, dotenv_1.config)();
 passport_1.default.use(new passport_google_oauth20_1.default.Strategy({
-    scope: ['profile', 'email'],
+    scope: ["profile", "email"],
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "/google/callback",
-    proxy: true
+    proxy: true,
 }, function (accessToken, refreshToken, profile, done) {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
@@ -52,7 +52,7 @@ passport_1.default.use(new passport_google_oauth20_1.default.Strategy({
 passport_1.default.use(new passport_facebook_1.default.Strategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: "https://api-admin-capstone.herokuapp.com/facebook",
+    callbackURL: "https://api-admin-capstone.herokuapp.com/facebook/callback",
     profileFields: [
         "id",
         "displayName",

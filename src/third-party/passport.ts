@@ -17,11 +17,11 @@ config();
 passport.use(
   new GoogleStrategy.Strategy(
     {
-      scope: ['profile', 'email'],
+      scope: ["profile", "email"],
       clientID: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       callbackURL: "/google/callback",
-      proxy:true
+      proxy: true,
     },
     async function (accessToken, refreshToken, profile: any, done) {
       const data = {
@@ -52,7 +52,7 @@ passport.use(
     {
       clientID: process.env.FACEBOOK_APP_ID as string,
       clientSecret: process.env.FACEBOOK_APP_SECRET as string,
-      callbackURL: "https://api-admin-capstone.herokuapp.com/facebook",
+      callbackURL: "https://api-admin-capstone.herokuapp.com/facebook/callback",
       profileFields: [
         "id",
         "displayName",
@@ -62,7 +62,6 @@ passport.use(
         "email",
         "link",
       ],
-      
     },
     async function (accessToken, refreshToken, profile: any, done) {
       const data = {
