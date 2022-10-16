@@ -29,7 +29,7 @@ middleware.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      sameSite: "none",
+      sameSite: "lax",
       httpOnly: true,
       maxAge: sevenDays,
       secure:true,
