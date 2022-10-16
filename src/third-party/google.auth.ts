@@ -20,7 +20,6 @@ googleAuthRouter.get(
 googleAuthRouter.get(
   "/google/callback",
   passport.authenticate("google", {
-    scope: ["profile", "email"],
     failureRedirect: "/login",
   }),
   (req: Request, res: Response) => {
