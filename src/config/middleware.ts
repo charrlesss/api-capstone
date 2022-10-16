@@ -5,9 +5,7 @@ import CookieParser from "cookie-parser";
 import passport from "passport";
 import "../third-party/passport";
 import bodyParser from "body-parser";
-import {
-  initializeClientAuth
-} from "../third-party/local-strategy";
+import { initializeClientAuth } from "../third-party/local-strategy";
 import {
   get_client_from_email,
   get_client_from_id,
@@ -31,6 +29,7 @@ middleware.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
+      sameSite: "none",
       httpOnly: true,
       maxAge: sevenDays,
     },
@@ -47,7 +46,6 @@ initializeClientAuth(
     return await get_client_from_id(id);
   }
 );
-
 
 middleware.use(passport.initialize());
 middleware.use(passport.session());
