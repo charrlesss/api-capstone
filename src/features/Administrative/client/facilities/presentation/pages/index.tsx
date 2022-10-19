@@ -1,0 +1,1 @@
+import {FalitiesPage} from './falities.page'

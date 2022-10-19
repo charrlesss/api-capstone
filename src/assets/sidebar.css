@@ -1,0 +1,71 @@
+:root {
+  --tw-border-opacity: 0;
+  --tw-bg-opacity: 0;
+  --tw-text-opacity: 0;
+}
+
+.side-navigation-panel
+  .side-navigation-panel-select
+  .side-navigation-panel-select-wrap
+  .side-navigation-panel-select-option {
+  color: white !important ;
+  margin-bottom: 4px !important;
+  border: none !important;
+  border-radius: 10px;
+}
+.side-navigation-panel
+  .side-navigation-panel-select
+  .side-navigation-panel-select-wrap
+  .side-navigation-panel-select-option:hover {
+  background:  rgb(7, 111, 172) !important  ;
+}
+
+.side-navigation-panel-select-option.side-navigation-panel-select-option-selected {
+  background: rgb(7, 111, 172) !important  ;
+  border-right: 2px solid red !important;
+}
+.side-navigation-panel
+  .side-navigation-panel-select
+  .side-navigation-panel-select-inner
+  .side-navigation-panel-select-inner-wrap
+  .side-navigation-panel-select-inner-option {
+  color: white !important ;
+  margin-bottom: 3px;
+  border: none !important;
+  border-radius: 10px;
+}
+
+
+
+.side-navigation-panel *, .side-navigation-panel:after, .side-navigation-panel:before {
+color: white !important ;
+
+}
+.side-navigation-panel
+  .side-navigation-panel-select
+  .side-navigation-panel-select-inner
+  .side-navigation-panel-select-inner-wrap
+  .side-navigation-panel-select-inner-option:hover {
+  background: rgb(7, 111, 172) !important  ;
+}
+.side-navigation-panel
+  .side-navigation-panel-select
+  .side-navigation-panel-select-inner
+  .side-navigation-panel-select-inner-wrap
+  .side-navigation-panel-select-inner-option-selected {
+  background:  rgb(7, 111, 172) !important  ;
+}
+
+.close-text .side-navigation-panel
+.side-navigation-panel-select
+.side-navigation-panel-select-wrap
+.side-navigation-panel-select-option
+.side-navigation-panel-select-option-wrap
+.side-navigation-panel-select-option-text
+ {
+color: white !important ;
+margin-bottom: 4px !important;
+border: none !important;
+border-radius: 10px;
+opacity: 0;
+}
