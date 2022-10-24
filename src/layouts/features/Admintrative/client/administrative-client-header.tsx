@@ -1,7 +1,7 @@
 import { Avatar } from "@mui/material";
 import Icon from "awesome-react-icons";
 import React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate ,useParams } from "react-router-dom";
 import { useGetClientDetails } from "../../../../hooks/user-details.hooks";
 import { AiOutlineBell } from "react-icons/ai";
 import { BackdropLoading } from "../../../../features/shared/presentation/pages/loading.page";
@@ -12,10 +12,15 @@ export const AdministrativeClientHeader: React.FC<{
   const { client } = useGetClientDetails();
   const location = useLocation();
   const navigate = useNavigate();
+  const params = useParams();
   const TABS = [
     {
       name: "facilites",
       url: "/dashboard/facilities",
+    },
+    {
+      url:"/dashboard/facilities/" +params?.facility,
+      name: "facility",
     },
     {
       name: "make appointment request",

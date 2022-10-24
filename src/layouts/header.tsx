@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
 import { SigninSignupComponent } from "../features/shared/presentation/components/signin-signup.component";
@@ -9,42 +9,43 @@ const Header: React.FC = (): JSX.Element => {
     useState<boolean>(false);
   const [openFormFor, setOpenFormFor] = useState<string>("");
   const { isAuthenticated } = useInterceptorAxios();
-  const [TABS, setTABS] = useState<Array<{ name: string; url: string }>>([]);
+  // const [TABS, setTABS] = useState<Array<{ name: string; url: string }>>([]);
   const location = useLocation();
 
-  const TABSAUTH = [
-    {
-      name: "features",
-      url: "/",
-    },
-    {
-      name: "dashboard",
-      url: "/dashboard",
-    },
-    {
-      name: "contact",
-      url: "/contact",
-    },
-  ];
 
-  const TABSNOTAUTH = [
-    {
-      name: "features",
-      url: "/",
-    },
-    {
-      name: "contact",
-      url: "/contact",
-    },
-  ];
 
-  useEffect(() => {
+  const TABS = useMemo(() => {
+    const TABSAUTH = [
+      {
+        name: "features",
+        url: "/",
+      },
+      {
+        name: "dashboard",
+        url: "/dashboard",
+      },
+      {
+        name: "contact",
+        url: "/contact",
+      },
+    ];
+  
+    const TABSNOTAUTH = [
+      {
+        name: "features",
+        url: "/",
+      },
+      {
+        name: "contact",
+        url: "/contact",
+      },
+    ];
+  
     if (isAuthenticated()) {
-      setTABS(TABSAUTH);
-      return;
+      return TABSAUTH;
     }
-    setTABS(TABSNOTAUTH);
-  }, [isAuthenticated]);
+    return TABSNOTAUTH;
+  }, [isAuthenticated ]);
 
   return (
     <header className={"sticky w-full top-0 z-20 hidden md:block bg-white"}>

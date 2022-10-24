@@ -30,7 +30,7 @@ export const AdministrativeAdminSidebar: React.FC<{
   const { width } = useResize();
   const [openFillDetails, setOpenFillDetails] = useState<boolean>(false);
   const { getAccessToken, instance } = useInterceptorAxios();
-  const logoutClient: any = useAppSelector(selectClientLogout);
+  // const logoutClient: any = useAppSelector(selectClientLogout);
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useAppDispatch();

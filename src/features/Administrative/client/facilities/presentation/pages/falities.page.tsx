@@ -10,6 +10,7 @@ import {
 } from "../slices/facilities.slice";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { useInterceptorAxios } from "../../../../../../lib/interceptor-axios";
+import { BackdropLoading } from "../../../../../shared/presentation/pages/loading.page";
 export const FalitiesPage: React.FC = (): JSX.Element => {
   const { getAccessToken, instance } = useInterceptorAxios();
   const facilitiesSlice: any = useAppSelector(selectFacilitiesSlice);
@@ -21,7 +22,10 @@ export const FalitiesPage: React.FC = (): JSX.Element => {
     );
   }, [dispatch, getAccessToken, instance]);
 
-  console.log(facilitiesSlice.data);
+  if (facilitiesSlice === undefined) {
+    return <BackdropLoading open={true} />;
+  }
+
 
   return (
     <AdministrativeClientWrapper>

@@ -54,6 +54,7 @@ import {
   ForgotPaswordUpdateState,
 } from "../slices/forgot-password-updated";
 
+import { selectVisitorAppointment,VisitorAppointmentState } from "../../../Administrative/client/make-appointment-request/presentation/slices/visitor-appointment.slices";
 export const LoadingPage: React.FC = (): JSX.Element => {
   const AuthUserSignin: any = useAppSelector(selectAuthUser);
   const RegisterUserSignup: any = useAppSelector(selectRegisterUser);
@@ -77,6 +78,9 @@ export const LoadingPage: React.FC = (): JSX.Element => {
     selectForgotPaswordCodeVerification
   );
   const forgotPaswordUpdate: any = useAppSelector(selectForgotPaswordUpdate);
+  const visitorAppointment: any = useAppSelector(selectVisitorAppointment);
+
+
 
   const [successAlert, setSuccessAlert] = useState<{
     status: boolean;
@@ -367,6 +371,27 @@ export const LoadingPage: React.FC = (): JSX.Element => {
         break;
     }
   }, [forgotPaswordUpdate, dispatch]);
+
+
+
+  useEffect(() => {
+    switch (visitorAppointment.status) {
+      case VisitorAppointmentState.inProgress:
+        setOpenBackdropLoading(true);
+        break;
+      case VisitorAppointmentState.initial:
+        setOpenBackdropLoading(false);
+        break;
+      case VisitorAppointmentState.success:
+        showAlert(setSuccessAlert, visitorAppointment?.data?.message);
+        setOpenBackdropLoading(false);
+        break;
+      case VisitorAppointmentState.fail:
+        showAlert(setFailsAlert, visitorAppointment?.data.message);
+        setOpenBackdropLoading(false);
+        break;
+    }
+  }, [visitorAppointment, dispatch]);
 
   return (
     <div>

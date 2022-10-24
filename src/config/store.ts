@@ -12,7 +12,6 @@ import updateProfile from "../features/shared/presentation/slices/update-profile
 import linkToChangePassword from "../features/Administrative/client/profile/presentation/slices/link-to-changepassword.slices";
 import changePassword from "../features/Administrative/client/profile/presentation/slices/change-password.slices";
 import backChangePassword from "../features/Administrative/client/profile/presentation/slices/back-change-password.slice";
-import getVisitorTypes from "../features/Administrative/client/make-appointment-request/presentation/slices/get-visitor-types.slices";
 import verifyUserEmail from "../features/shared/presentation/slices/verify-email.slices";
 import verifyUserEmailWithCode from "../features/shared/presentation/slices/verify-email-with-code";
 import removeAccountNotVerified from "../features/shared/presentation/slices/remove-acc-not-verified";
@@ -23,7 +22,8 @@ import forgotPassword from "../features/shared/presentation/slices/forgot-passwo
 import forgotPaswordCodeVerification from "../features/shared/presentation/slices/forgot-password-code-verification.slices";
 import forgotPaswordAuthorize from "../features/shared/presentation/slices/forgot-password-authorize.slice";
 import forgotPasswordUpdate from "../features/shared/presentation/slices/forgot-password-updated";
-
+import visitorAppointment from "../features/Administrative/client/make-appointment-request/presentation/slices/visitor-appointment.slices";
+import getVisitorAppointment from "../features/Administrative/client/make-appointment-request/presentation/slices/get-visitor-appoinments.slices";
 export const store = configureStore({
   reducer: {
     getAuthentication,
@@ -41,7 +41,7 @@ export const store = configureStore({
     linkToChangePassword,
     changePassword,
     backChangePassword,
-    getVisitorTypes,
+    visitorAppointment,
     removeAccountNotVerified,
     adminAuthentication,
     isAuthenticatedAdmin,
@@ -49,7 +49,8 @@ export const store = configureStore({
     forgotPassword,
     forgotPaswordCodeVerification,
     forgotPaswordAuthorize,
-    forgotPasswordUpdate
+    forgotPasswordUpdate,
+    getVisitorAppointment
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });

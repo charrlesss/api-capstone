@@ -18,9 +18,9 @@ export const AdministrativeClientWrapper: React.FC<{
 
       <section className="relative w-full relative  min-h-[100vh] max-h-auto   flex  transition-all  ">
         <AdministrativeClientSidebar callback={callback} isOpen={isShow} />
-        <section className=" flex-1 transition-all duration-600   relative transition-all border">
+        <section className=" flex-1 transition-all duration-600   relative transition-all ">
           <AdministrativeClientHeader callback={callback} open={isShow} />
-          <div className="md:px-10 sm:px-4 px-2  h-[calc(100vh-theme(space.24))] overflow-y-scroll pt-10">
+          <div className="md:px-10 sm:px-4 px-2  md:h-[calc(100vh-theme(space.24))] h-auto overflow-y-scroll pt-10">
             {outlet ? <Outlet /> : children}
           </div>
         </section>
